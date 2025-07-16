@@ -7,15 +7,12 @@ A lightweight library for working with ChatGPT.
 ## 🚀 Installation
 
 ```bash
-pip install chatgpt-library
+    pip install chatgpt-library
 
 🧩 Usage
-tbd
-
-⚙️ Initialization
-tbd
+    docker build -t chatgpt-automation .
+    docker run --rm chatgpt-automation
 
 
 
 ```
-
