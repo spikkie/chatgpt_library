@@ -1,0 +1,10 @@
+#---
+pip install -e . -r requirements.txt
+#---
+
+docker build -t chatgpt-automation .
+docker run --rm chatgpt-automation
+
+#---
+
+
