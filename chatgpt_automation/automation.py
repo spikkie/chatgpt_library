@@ -40,7 +40,8 @@ class ChatGPTAutomation:
 
         try:
             await page.click('button[data-testid="login-button"]')
-            await page.wait_for_load_state("networkidle")
+            # await page.wait_for_load_state("networkidle")
+            await page.wait_for_load_state("domcontentloaded")
             await page.wait_for_timeout(1000)
         except Exception:
             logger.exception("Failed to click login button or load page")
@@ -242,7 +243,7 @@ class ChatGPTAutomation:
 
     async def _wait_and_get_json(self, page: Page) -> str:
         logger.info("Waiting for JSON code block to appear in page")
-        await page.wait_for_selector("code.language-json", timeout=600000)
+        await page.wait_for_selector("code.language-json", timeout=1200000)
         await page.wait_for_selector(
             'span.hljs-attr:text("finished"), strong[data-start][data-end]:text("finished")'
         )
@@ -253,7 +254,7 @@ class ChatGPTAutomation:
 
     async def _wait_and_get_response(self, page: Page) -> str:
         logger.info("Waiting for markdown response in page")
-        await page.wait_for_selector("div.markdown", timeout=60000)
+        await page.wait_for_selector("div.markdown", timeout=1200000)
         logger.debug("Markdown response detected, extracting content")
         return await page.locator("div.markdown").text_content()
 
